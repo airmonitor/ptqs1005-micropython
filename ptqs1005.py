@@ -105,13 +105,13 @@ class PTQS1005Driver:
         utime.sleep(1e-3)
 
     @staticmethod
-    def __standby_mode(reset_pin: int):
+    def standby_mode(reset_pin: int):
         """Send a command to the sensor."""
         cmd = machine.Pin(reset_pin, machine.Pin.OUT)
         cmd.value(0)
 
     @staticmethod
-    def __active_mode(reset_pin: int):
+    def active_mode(reset_pin: int):
         """Send a command to the sensor."""
         cmd = machine.Pin(reset_pin, machine.Pin.OUT)
         cmd.value(1)
@@ -142,8 +142,8 @@ class PTQS1005Sensor:
 
     def sleep(self, reset_pin: int):
         """Put the sensor in standby mode."""
-        self.driver.__standby_mode(reset_pin)
+        self.driver.standby_mode(reset_pin)
 
     def wakeup(self, reset_pin: int):
         """Put the sensor in active mode."""
-        self.driver.__active_mode(reset_pin)
+        self.driver.active_mode(reset_pin)
